@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casual Lifting</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Casual Lifting</h1>
+    
+    <div class="tabs">
+      <button onclick="switchTab('pr')">Pr Calc</button>
+      <button onclick="switchTab('workout')">Workout</button>
+      <button onclick="switchTab('food')">Food</button>
+      <button onclick="switchTab('time')">Time</button>
+    </div>
+
+    <div id="pr-tab" class="tab-content active">
+        <h2>Deadlift:</h2>
+    <input type="number" placeholder="Weight" id="deadlift-weight">
+    <input type="number" placeholder="Reps" id="deadlift-reps">
+    <button onclick="calculatePR('deadlift')">Confirm</button>
+    <p id="deadlift-result">Your PR: --</p>
+
+    <h2>Bench:</h2>
+    <input type="number" placeholder="Weight" id="bench-weight">
+    <input type="number" placeholder="Reps" id="bench-reps">
+    <button onclick="calculatePR('bench')">Confirm</button>
+    <p id="bench-result">Your PR: --</p>
+
+    <h2>Squat:</h2>
+    <input type="number" placeholder="Weight" id="squat-weight">
+    <input type="number" placeholder="Reps" id="squat-reps">
+    <button onclick="calculatePR('squat')">Confirm</button>
+    <p id="squat-result">Your PR: --</p>
+
+    <h2>Row:</h2>
+    <input type="number" placeholder="Weight" id="row-weight">
+    <input type="number" placeholder="Reps" id="row-reps">
+    <button onclick="calculatePR('row')">Confirm</button>
+    <p id="row-result">Your PR: --</p>
+
+    </div>
+
+    <!-- Diğer sekmeler şimdilik boş -->
+    <div id="workout-tab" class="tab-content">Workout coming soon...</div>
+    <div id="food-tab" class="tab-content">Food tracking coming soon...</div>
+    <div id="time-tab" class="tab-content">Timer coming soon...</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
