@@ -1,0 +1,148 @@
+{
+    "fruits": [
+        {
+            "name": "Elma",
+            "calories": 52,
+            "unit": "100g"
+        },
+        {
+            "name": "Muz",
+            "calories": 89,
+            "unit": "100g"
+        },
+        {
+            "name": "Portakal",
+            "calories": 47,
+            "unit": "100g"
+        },
+        {
+            "name": "Çilek",
+            "calories": 32,
+            "unit": "100g"
+        },
+        {
+            "name": "Üzüm",
+            "calories": 69,
+            "unit": "100g"
+        },
+        {
+            "name": "Karpuz",
+            "calories": 30,
+            "unit": "100g"
+        },
+        {
+            "name": "Kavun",
+            "calories": 34,
+            "unit": "100g"
+        },
+        {
+            "name": "Armut",
+            "calories": 57,
+            "unit": "100g"
+        },
+        {
+            "name": "Kivi",
+            "calories": 41,
+            "unit": "100g"
+        },
+        {
+            "name": "Ananas",
+            "calories": 50,
+            "unit": "100g"
+        }
+    ],
+    "carbs": [
+        {
+            "name": "Pirinç (beyaz)",
+            "calories": 365,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Makarna (dürü)",
+            "calories": 371,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Bulgur",
+            "calories": 360,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Yulaf ezmesi",
+            "calories": 389,
+            "unit": "100g"
+        },
+        {
+            "name": "Kuru fasulye",
+            "calories": 333,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Mercimek",
+            "calories": 353,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Nohut",
+            "calories": 364,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Patates (çiğ)",
+            "calories": 77,
+            "unit": "100g"
+        },
+        {
+            "name": "Mısır (kurutulmuş)",
+            "calories": 365,
+            "unit": "100g"
+        }
+    ],
+    "proteins": [
+        {
+            "name": "Tavuk Göğsü",
+            "calories": 120,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Kırmızı Et (yağsız dana)",
+            "calories": 143,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Hindi Göğsü",
+            "calories": 135,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Somon",
+            "calories": 208,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Ton Balığı",
+            "calories": 132,
+            "unit": "100g (çiğ)"
+        },
+        {
+            "name": "Yumurta (çiğ)",
+            "calories": 143,
+            "unit": "100g"
+        },
+        {
+            "name": "Süt ",
+            "calories": 44,
+            "unit": "100g"
+        },
+        {
+            "name": "Yoğurt (süzme)",
+            "calories": 59,
+            "unit": "100g"
+        },
+        {
+            "name": "Lor Peyniri",
+            "calories": 98,
+            "unit": "100g"
+        }
+    ]
+}

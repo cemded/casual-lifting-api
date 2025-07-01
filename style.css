@@ -29,3 +29,24 @@ body {
 .tab-content.active {
   display: block;
 }
+
+#suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background: white;
+  text-align: left;
+  border-radius: 5px;
+}
+
+#suggestions li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #f0f0f0;
+}
