@@ -50,8 +50,51 @@
   <div id="workout-program-output"></div>
   </div>
 
-    <div id="food-tab" class="tab-content">Food tracking coming soon...</div>
-    <div id="time-tab" class="tab-content">Timer coming soon...</div>
+    <div id="food-tab" class="tab-content">
+  <h2>Food Tracking</h2>
+
+  <label for="daySelect">Select Day:</label>
+  <select id="daySelect">
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+    <option value="Sunday">Sunday</option>
+  </select>
+
+  <label for="foodInput">Food Name (e.g. Banana):</label>
+  <input type="text" id="foodInput" placeholder="Enter food name">
+  <div id="suggestions" style="border: 1px solid #ccc; max-height: 100px; overflow-y: auto;"></div>
+  
+  <button onclick="addFood()">Add</button>
+
+  <h3 id="selectedDayLabel">Day: Monday</h3>
+  <div id="foodList"></div>
+  <strong>Total Calories: <span id="totalCalories">0</span> kcal</strong>
+</div>
+
+    <div id="time-tab" class="tab-content">
+      <h2>Kronometre</h2>
+  <div id="chronometer">00:00:00</div>
+  <button onclick="startChronometer()">Start</button>
+  <button onclick="pauseChronometer()">Pause</button>
+  <button onclick="resetChronometer()">Reset</button>
+
+  <hr style="margin: 30px 0;">
+
+  <button onclick="startBeepTimer(1)">Beep in 1 min</button>
+  <button onclick="startBeepTimer(2)">Beep in 2 min</button>
+  <button onclick="startBeepTimer(3)">Beep in 3 min</button>
+  <button onclick="startBeepTimer(5)">Beep in 5 min</button>
+
+  <br>
+  <input type="number" id="custom-minutes" placeholder="Custom (seconds)" min="1">
+  <button onclick="startCustomBeep()">Custom Beep</button>
+
+  <p id="timer-status"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>

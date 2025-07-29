@@ -101,3 +101,173 @@ function generateWorkoutProgram() {
     div.innerHTML += `<h3>${day}</h3><ul>` + list.map(ex => `<li>${ex}</li>`).join("") + '</ul>';
   });
 }
+
+
+
+
+// Kronometre (ileri sayım)
+let chronoInterval;
+let chronoSeconds = 0;
+let chronoRunning = false;
+
+function updateChronometerDisplay() {
+  const hrs = Math.floor(chronoSeconds / 3600);
+  const mins = Math.floor((chronoSeconds % 3600) / 60);
+  const secs = chronoSeconds % 60;
+  document.getElementById("chronometer").innerText =
+    `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+}
+
+function startChronometer() {
+  if (chronoRunning) return;
+  chronoRunning = true;
+  chronoInterval = setInterval(() => {
+    chronoSeconds++;
+    updateChronometerDisplay();
+  }, 1000);
+}
+
+function pauseChronometer() {
+  clearInterval(chronoInterval);
+  chronoRunning = false;
+}
+
+function resetChronometer() {
+  pauseChronometer();
+  chronoSeconds = 0;
+  updateChronometerDisplay();
+}
+
+// Beep Timer (geri sayım)
+let countdown;
+
+function startBeepTimer(minutes) {
+  clearInterval(countdown);
+  let seconds = minutes * 60;
+  updateStatus(`Beep in ${Math.round(seconds)} second(s)...`);
+
+
+  countdown = setInterval(() => {
+    seconds--;
+    updateStatus(`Time left: ${Math.floor(seconds / 60)}:${(seconds % 60).toString().padStart(2, '0')}`);
+    if (seconds <= 4) {
+      clearInterval(countdown);
+      playBeep();
+      updateStatus("⏰ Beep!");
+    }
+  }, 1000);
+}
+
+function startCustomBeep() {
+  const seconds = parseInt(document.getElementById("custom-minutes").value); // ID değişmiyor
+  if (isNaN(seconds) || seconds < 10 || seconds > 600) {
+    updateStatus("Enter valid seconds value.");
+    return;
+  }
+  const minutes = seconds / 60;  // dönüşüm burada
+  startBeepTimer(minutes);       // mevcut yapı bozulmadan çalışır
+}
+
+
+function updateStatus(text) {
+  document.getElementById("timer-status").innerText = text;
+}
+
+function playBeep() {
+  const audio = new Audio("Sound/go-time.mp3");
+  audio.play();
+}
+
+
+
+let rawFoodData = {}; // JSON'dan dolacak
+const foodTracker = {
+  Monday: [], Tuesday: [], Wednesday: [],
+  Thursday: [], Friday: [], Saturday: [], Sunday: []
+};
+let currentDay = "Monday";
+let allFoodsFlat = [];
+
+document.getElementById("daySelect").addEventListener("change", function () {
+  currentDay = this.value;
+  updateFoodUI();
+});
+
+function loadFoodData() {
+  fetch("rawfood.json")
+    .then(response => response.json())
+    .then(data => {
+      rawFoodData = data;
+      // Tüm yiyecekleri tek listeye düzleştir
+      allFoodsFlat = [];
+      for (const category in rawFoodData) {
+        allFoodsFlat = allFoodsFlat.concat(rawFoodData[category]);
+      }
+    });
+}
+
+function findCalories(foodName) {
+  const name = foodName.trim().toLowerCase();
+  for (let item of allFoodsFlat) {
+    if (item.Name.toLowerCase() === name) {
+      return item.Calories;
+    }
+  }
+  return null;
+}
+
+function addFood() {
+  const foodName = document.getElementById("foodInput").value.trim();
+  const calories = findCalories(foodName);
+  if (calories === null) {
+    alert("Food not found in database.");
+    return;
+  }
+
+  foodTracker[currentDay].push({ food: foodName, calories });
+  document.getElementById("foodInput").value = "";
+  document.getElementById("suggestions").innerHTML = "";
+  updateFoodUI();
+}
+
+function updateFoodUI() {
+  const list = document.getElementById("foodList");
+  const total = document.getElementById("totalCalories");
+  const label = document.getElementById("selectedDayLabel");
+
+  list.innerHTML = "";
+  let sum = 0;
+  foodTracker[currentDay].forEach(item => {
+    list.innerHTML += `<div>${item.food} - ${item.calories} kcal</div>`;
+    sum += item.calories;
+  });
+
+  total.textContent = sum;
+  label.textContent = "Day: " + currentDay;
+}
+
+// 🎯 Otomatik tamamlama
+document.getElementById("foodInput").addEventListener("input", function () {
+  const value = this.value.trim().toLowerCase();
+  const suggestionBox = document.getElementById("suggestions");
+  suggestionBox.innerHTML = "";
+
+  if (value.length < 2) return;
+
+  const matches = allFoodsFlat.filter(f => f.Name.toLowerCase().includes(value));
+  matches.slice(0, 5).forEach(match => {
+    const div = document.createElement("div");
+    div.textContent = match.Name;
+    div.style.cursor = "pointer";
+    div.style.padding = "5px";
+    div.onclick = () => {
+      document.getElementById("foodInput").value = match.Name;
+      suggestionBox.innerHTML = "";
+    };
+    suggestionBox.appendChild(div);
+  });
+});
+
+// sayfa yüklenince verileri yükle
+loadFoodData();
+updateFoodUI();
